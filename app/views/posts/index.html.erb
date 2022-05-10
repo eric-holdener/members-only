@@ -2,13 +2,36 @@
 
 <h1>Posts</h1>
 
-<div id="posts">
-  <% @posts.each do |post| %>
-    <%= render post %>
-    <p>
-      <%= link_to "Show this post", post %>
-    </p>
-  <% end %>
-</div>
-
-<%= link_to "New post", new_post_path %>
+  <div>
+    <% if user_signed_in? %>
+      <article>
+        <div>
+          <%= render 'posts/form' %>
+        </div>
+      </article>
+    <% end %>
+    <% @posts.each do |post| %>
+      <div>
+        <div>
+          <% if user_signed_in? %>
+            <strong><%= post.user.first_name %></strong>
+            <strong> </strong>
+            <strong><%= post.user.last_name %></strong><br />
+            <small><%= post.user.username %></small>
+          <% else %>
+            <strong>Anonymous</strong><br />
+            <small>Anonymous</small>
+          <% end %>
+          <p><%= post.title %></p>
+          <p><%= post.text %></p>
+        </div>
+        <nav>
+          <% if user_signed_in? %>
+            <%= link_to post, data: { "turbo-method": :delete } do %>
+              <p>Delete</p>
+            <% end %>
+          <% end %>
+        </nav>
+      </div>
+    <% end %>
+  </div>

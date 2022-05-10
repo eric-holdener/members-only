@@ -29,22 +29,23 @@ class PostsController < ApplicationController
 
   # DELETE /posts/1 or /posts/1.json
   def destroy
+    @post = set_post
     @post.destroy
 
     respond_to do |format|
-      format.html { redirect_to posts_url, notice: "Post was successfully destroyed." }
+      format.html { redirect_to root_path, notice: "Post was successfully destroyed." }
       format.json { head :no_content }
     end
   end
 
   private
     # Use callbacks to share common setup or constraints between actions.
-    def set_post
-      @post = Post.find(params[:id])
-    end
+  def set_post
+    @post = Post.find(params[:id])
+  end
 
     # Only allow a list of trusted parameters through.
-    def post_params
-      params.fetch(:post, {})
-    end
+  def post_params
+    params.require(:post).permit(:title, :text)
+  end
 end
