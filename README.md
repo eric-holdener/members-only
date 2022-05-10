@@ -1,24 +1,5 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+This members only application is a project laid out in The Odin Project, designed to put into practice user authentication utilizing Devise.
 
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+The goal of the app is to make a website where when not logged in, you can see all the posts people are making but they are all anonymous, and when you log in you can see what user is associated with what post.
